@@ -7,7 +7,7 @@ Task list
 ## [Noteapp](/noteapp/)
 Aplicación básica de lista de tareas
 - [x] Task subscription on Firebase database
-- [x] Real time visualization update with [OnSnapshot](https://firebase.google.com/docs/firestore/query-data/listen#web-version-9){:target="_blank"}
+- [x] Real time visualization update with [OnSnapshot](https://firebase.google.com/docs/firestore/query-data/listen#web-version-9)
 - [ ] Task deletion from UI
 - [ ] Task edit functionality
   - [ ] Task edit button
