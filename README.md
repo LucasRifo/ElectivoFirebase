@@ -6,7 +6,7 @@ Lista de tareas
 2. [Tarea 2](##Tarea-2)
 
 ## Noteapp
-[Carpeta de Noteapp](/ElectivoFirebase/noteapp/)
+[Carpeta de Noteapp](/noteapp/)
 
 
 ## Tarea 2
