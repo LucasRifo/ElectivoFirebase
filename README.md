@@ -1,4 +1,4 @@
-# Firebase Course
+# Firebase Homework
 Homework folder for Firebase course
 
 Task list
