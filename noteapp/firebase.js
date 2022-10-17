@@ -1,5 +1,6 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-app.js";
-import { getFirestore, collection, query, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-firestore.js"
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-app.js";//Firebase App
+import { getFirestore, collection, query, addDoc, getDocs, deleteDoc, doc, getDoc, updateDoc} from "https://www.gstatic.com/firebasejs/9.8.1/firebase-firestore.js"//Firestore
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -15,12 +16,13 @@ const firebaseConfig = {
 // Initialize Firebase
 
 const app = initializeApp(firebaseConfig);
-
 const db = getFirestore();
 
 export const saveTask = (Titulo, Descripcion) => {
     addDoc(collection(db,'Homework'), {Titulo, Descripcion})
 }
-
-export const getTask = () => getDocs(collection(db,'Homework'))
-export const getTask2 = () => query(collection(db,'Homework'))
+export const getTask = () => getDocs(collection(db,'Homework'));
+export const getTask2 = () => query(collection(db,'Homework'));
+export const Eliminar = (id) => deleteDoc(doc(db,"Homework",id));
+export const SearchTask = (id) => getDoc(doc(db,"Homework",id));
+export const Actualizar = (id,nuevoTitulo,nuevaDescripcion) => updateDoc(doc(db,"Homework",id),{Titulo: nuevoTitulo, Descripcion: nuevaDescripcion})
