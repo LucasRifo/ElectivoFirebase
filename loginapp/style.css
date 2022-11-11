@@ -1,15 +1,25 @@
-.divider:after,
-.divider:before {
-content: "";
-flex: 1;
-height: 1px;
-background: #eee;
+.gradient-custom {
+    background: -webkit-linear-gradient(to right, chocolate, goldenrod);
+    background: linear-gradient(to right, chocolate, goldenrod)
+    }
+.button {
+    background-color:transparent;
+    border: 2px solid#c68a3b;
+    color:#c68a3b;
+    padding: 10px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 2px 2px;
+    cursor: pointer;
+    border-radius: 12px;
+  }
+.modal-header{
+  border-color: rgb(51, 45, 45);
 }
-.h-custom {
-height: calc(100% - 73px);
-}
-@media (max-width: 450px) {
-.h-custom {
-height: 100%;
-}
+.modal-content{
+  background-color: rgb(51, 45, 45);
+  color: goldenrod;
+  border-color: goldenrod
 }

@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-app.js";
-import  { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, FacebookAuthProvider, signInWithPopup } from  "https://www.gstatic.com/firebasejs/9.12.1/firebase-auth.js";
+import  { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, FacebookAuthProvider, TwitterAuthProvider, signInWithPopup } from  "https://www.gstatic.com/firebasejs/9.12.1/firebase-auth.js";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -10,16 +10,38 @@ const firebaseConfig = {
   projectId: "nosql-test-f45f2",
   storageBucket: "nosql-test-f45f2.appspot.com",
   messagingSenderId: "874177783462",
-  appId: "1:874177783462:web:74e4b4820fcdf154c67667"
+  appId: "1:874177783462:web:35b9b65490c339dac67667"
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
-const signupForm = document.querySelector('#signup-form')
+const logInForm = document.querySelector('#login-form')
+const signupForm = document.querySelector('#signupform')
 const signupModal = document.getElementById('signupModal')
+const googleLogin = document.querySelector('#google_login')
+const FBLogin = document.querySelector('#facebook_login')
+const twitterlogin = document.querySelector('#twitter_login')
+
+const logout = document.querySelector('#logout')
 const modal = new mdb.Modal(signupModal)
 
+logInForm.addEventListener('submit',(e)=>{
+    e.preventDefault();
+    const email = document.querySelector('#email-input').value
+    const pass = document.querySelector('#pass-input').value
+    signInWithEmailAndPassword(auth, email, pass)
+    .then(userCredential =>{
+      logInForm.reset();
+      window.location.href = "mainPage.html"
+      console.log("Sesion Iniciada")
+    })
+    .catch((error)=>{
+      const errorCode = error.code;
+      const errorMessage = error.Message;
+    })
+  })
+  
 signupForm.addEventListener('submit', (e)=>{
     e.preventDefault();
     const email = document.querySelector('#signup-email').value;
@@ -36,27 +58,6 @@ signupForm.addEventListener('submit', (e)=>{
     })
 })
 
-const logInForm = document.querySelector('#login-form')
-
-logInForm.addEventListener('submit',(e)=>{
-  e.preventDefault();
-  const email = document.querySelector('#Email-input').value
-  const pass = document.querySelector('#Pass-input').value
-  signInWithEmailAndPassword(auth, email, pass)
-  .then(userCredential =>{
-    logInForm.reset();
-    window.location.href = "mainPage.html"
-    console.log("Sesion Iniciada")
-  })
-  .catch((error)=>{
-    const errorCode = error.code;
-    const errorMessage = error.Message;
-  })
-})
-
-const logout = document.querySelector('#logout')
-
-const googleLogin = document.querySelector('#google_login')
 googleLogin.addEventListener('click',(e) =>{
   e.preventDefault()
   const provider = new GoogleAuthProvider()
@@ -74,18 +75,41 @@ googleLogin.addEventListener('click',(e) =>{
   })
 })
 
-const facebooklogin = document.querySelector('#facebook_login')
-facebooklogin.addEventListener('click', e =>{
+twitterlogin.addEventListener('click',e=>{
+  e.preventDefault()
+  const provider = new TwitterAuthProvider()
+  signInWithPopup(auth,provider)
+  .then(result=>{
+    console.log('Inicio de Sesion con Twitter')
+    const credential = TwitterAuthProvider.credentialFromResult(result)
+    const token = credential.accessToken
+    const secret = credential.secret
+    const user = result.user
+    window.location.href('mainPage.html')
+  })
+  .catch((error)=>{
+    const errorCode = error.code
+    const errorMessage = error.message
+    const email = error.customData.email;
+    const credential = TwitterAuthProvider.credentialFromError(error);
+  })
+})
+
+FBLogin.addEventListener('click', e =>{
   e.preventDefault();
   const provider = new FacebookAuthProvider();
-  signInWithPopup(auth, provider).then(result=>{
-    console.log(result)
+  signInWithPopup(auth, provider)
+  .then((result)=>{
+    const user = result.user
+    const credential = FacebookAuthProvider.credentialFromResult(result);
+    const accessToken = credential.accessToken;
     console.log('Inicio de Sesión con Facebook')
     window.location.href = "mainPage.html"
   }).catch((error) => {
     const errorCode = error.code;
     const errorMessage = error.message;
+    const email = error.customData.email;
+    const credential = FacebookAuthProvider.credentialFromError(error);
   });
-
 
 })
