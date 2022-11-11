@@ -3,6 +3,7 @@ Homework folder for Firebase course
 
 Task list
 1. [Noteapp](##Noteapp)
+2. [Loginapp](##Loginapp)
 
 ## [Noteapp](/noteapp/)
 Aplicación básica de lista de tareas
@@ -14,7 +15,17 @@ Aplicación básica de lista de tareas
   - [x] Task edit button
   - [x] Task edit info loaded in formulary
 
-## Tarea 2
+## [Login App](/loginapp/)
+- [ ] Login/Signup
+  - [x] Via Email and Password
+  - [x] Via Facebook
+  - [x] Via Google
+  - [ ] Via Twitter
+- [ ] Logout
+- [ ] Collections
+  - [ ] Doctors Collection on Firebase
+  - [ ] Patients Collection on Firebase
+  - [ ] Collection preview (CRUD with tables)
 
 
 >Written by Lucas Rifo 
