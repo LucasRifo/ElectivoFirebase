@@ -60,8 +60,10 @@ signupForm.addEventListener('submit', (e)=>{
 
 googleLogin.addEventListener('click',(e) =>{
   e.preventDefault()
-  const provider = new GoogleAuthProvider()
-  signInWithPopup(auth,provider)
+  // const provider = new GoogleAuthProvider()
+  const twitterprovider = new TwitterAuthProvider()
+  console.log(twitterprovider)
+  signInWithPopup(auth, twitterprovider)
   .then(result =>{
     const credential = GoogleAuthProvider.credentialFromResult(result);
     const token = credential.accessToken;
@@ -69,6 +71,7 @@ googleLogin.addEventListener('click',(e) =>{
     window.location.href = "mainPage.html"
   })
   .catch((error) => {
+    console.error(error)
     const errorCode = error.code;
     const errorMessage = error.message;
     const credential = GoogleAuthProvider.credentialFromError(error);
@@ -78,21 +81,23 @@ googleLogin.addEventListener('click',(e) =>{
 twitterlogin.addEventListener('click',e=>{
   e.preventDefault()
   const provider = new TwitterAuthProvider()
-  signInWithPopup(auth,provider)
+  signInWithPopup(auth, provider)
   .then(result=>{
     console.log('Inicio de Sesion con Twitter')
-    const credential = TwitterAuthProvider.credentialFromResult(result)
-    const token = credential.accessToken
-    const secret = credential.secret
-    const user = result.user
-    window.location.href('mainPage.html')
-  })
-  .catch((error)=>{
-    const errorCode = error.code
-    const errorMessage = error.message
+    const credential = TwitterAuthProvider.credentialFromResult(result);
+    const token = credential.accessToken;
+    const secret = credential.secret;
+
+    // The signed-in user info.
+    const user = result.user;
+    window.location.href = "mainPage.html"
+  }).catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
     const email = error.customData.email;
     const credential = TwitterAuthProvider.credentialFromError(error);
-  })
+    console.log(errorCode)
+  });
 })
 
 FBLogin.addEventListener('click', e =>{
@@ -111,5 +116,4 @@ FBLogin.addEventListener('click', e =>{
     const email = error.customData.email;
     const credential = FacebookAuthProvider.credentialFromError(error);
   });
-
 })
