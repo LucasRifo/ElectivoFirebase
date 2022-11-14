@@ -23,3 +23,17 @@
   color: goldenrod;
   border-color: goldenrod
 }
+body {
+  background-color: white;
+  color: black;
+  font-size: 25px;
+}
+
+.dark-mode {
+  background-color: rgb(51, 45, 45);
+  color: goldenrod;
+  transition:all ease-in-out .3s
+}
+.text-warning{
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}

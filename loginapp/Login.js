@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-app.js";
-import  { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, FacebookAuthProvider, TwitterAuthProvider, signInWithPopup } from  "https://www.gstatic.com/firebasejs/9.12.1/firebase-auth.js";
+import  { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, FacebookAuthProvider, TwitterAuthProvider, signInWithPopup, signOut  } from  "https://www.gstatic.com/firebasejs/9.12.1/firebase-auth.js";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -22,8 +22,6 @@ const signupModal = document.getElementById('signupModal')
 const googleLogin = document.querySelector('#google_login')
 const FBLogin = document.querySelector('#facebook_login')
 const twitterlogin = document.querySelector('#twitter_login')
-
-const logout = document.querySelector('#logout')
 const modal = new mdb.Modal(signupModal)
 
 logInForm.addEventListener('submit',(e)=>{
@@ -61,9 +59,9 @@ signupForm.addEventListener('submit', (e)=>{
 googleLogin.addEventListener('click',(e) =>{
   e.preventDefault()
   // const provider = new GoogleAuthProvider()
-  const twitterprovider = new TwitterAuthProvider()
-  console.log(twitterprovider)
-  signInWithPopup(auth, twitterprovider)
+  const provider = new GoogleAuthProvider()
+  console.log(provider)
+  signInWithPopup(auth, provider)
   .then(result =>{
     const credential = GoogleAuthProvider.credentialFromResult(result);
     const token = credential.accessToken;
@@ -82,22 +80,19 @@ twitterlogin.addEventListener('click',e=>{
   e.preventDefault()
   const provider = new TwitterAuthProvider()
   signInWithPopup(auth, provider)
-  .then(result=>{
-    console.log('Inicio de Sesion con Twitter')
+  .then((result)=>{
     const credential = TwitterAuthProvider.credentialFromResult(result);
     const token = credential.accessToken;
     const secret = credential.secret;
-
-    // The signed-in user info.
-    const user = result.user;
-    window.location.href = "mainPage.html"
-  }).catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    const email = error.customData.email;
-    const credential = TwitterAuthProvider.credentialFromError(error);
-    console.log(errorCode)
-  });
+    const user = credential.user;
+  })
+  .catch((error)=>{
+    const errorCode = error.code
+    const errorMessage = error.message
+    const email = error.customData.email
+    const credential = TwitterAuthProvider.credentialFromError(error)
+    console.log('Error de Signup')
+  })
 })
 
 FBLogin.addEventListener('click', e =>{
