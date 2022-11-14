@@ -16,16 +16,17 @@ Aplicación básica de lista de tareas
   - [x] Task edit info loaded in formulary
 
 ## [Login App](/loginapp/)
-- [ ] Login/Signup
+- [x] Login/Signup
   - [x] Via Email and Password
   - [x] Via Facebook
   - [x] Via Google
-  - [ ] Via Twitter
-- [ ] Logout
-- [ ] Collections
-  - [ ] Doctors Collection on Firebase
-  - [ ] Patients Collection on Firebase
-  - [ ] Collection preview (CRUD with tables)
+  - [ ] Via Twitter (Didn't worked, [here's why](/loginapp/Readme.md))
+- [x] Logout
+- [x] Collections
+  - [x] Doctors Collection on Firebase
+  - [x] Patients Collection on Firebase
+  - [x] Collection preview (CRUD with tables)
+- [x] Also added dark mode!
 
 
 >Written by Lucas Rifo 
