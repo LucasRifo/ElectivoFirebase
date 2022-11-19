@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <!-- Font Awesome -->
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    rel="stylesheet"
+  />
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+    rel="stylesheet"
+  />
+  <!-- MDB -->
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/5.0.0/mdb.min.css"
+    rel="stylesheet"
+  />
+  <!-- CSS Login -->
+  <link rel="stylesheet" href="./loginstyle.css"/>
+</head>
+<body>
+    <section id="main-wrapper" class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-10">
+                <div class="card border-0">
+                    <div class="card-body p-0">
+                        <div class="row no-gutters">
+                            <!--LADO IZQUIERDO-->
+                            <div class="col-lg-6 d-none d-lg-inline-block">
+                                <div class="account-block rounded-left">
+                                    <div class="overlay rounded-left"></div>
+                                    <div class="account-top">
+                                        <h4>Logo</h4>
+                                    </div>
+                                    <div class="account-middle">
+                                        <h2>¡Bienvenido(a) App City!</h1>
+                                        <p>Información demográfica de las principales ciudades de Chile</p>
+                                        <button type="button" class="btn btn-light text-black fw-bold">Más info</button>
+                                    </div>
+                                    <div class="account-bot">
+                                        <div class="d-flex justify-content-left">
+                                            <p class="text-white fw-bold" style="cursor:pointer" id="facebook_login">Facebook</p>
+                                            <p class="text-white fw-bold" style="cursor:pointer" id="twitter_login">Twitter</p>
+                                            <p class="text-white fw-bold" style="cursor:pointer" id="google_login">Google</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--LADO DERECHO-->
+                            <div class="col-lg-6">
+                                <div class="p-5 position-relative top-50 start-50 translate-middle">
+                                    <div class="mb-4">
+                                        <h4 class=" fw-bold text-theme">Inicio de Sesión</h3>
+                                    </div>
+                                    <form id="login-form">
+                                        <div class="form-outline mb-3">
+                                            <input type="email" id="email-input" class="form-control form-control-lg" />
+                                            <label class="form-label" for="Email_input">Email</label>
+                                          </div>
+                            
+                                          <div class="form-outline mb-3">
+                                            <input type="password" id="pass-input" class="form-control form-control-lg" />
+                                            <label class="form-label" for="pass_input">Password</label>
+                                          </div>
+                                          <div class="row mb-4">
+                                            <div class="col d-flex align-content-center">
+                                                <button type="submit" style="margin: 1em;" class="btn btn-theme">Login</button>
+                                                <b><a href="#" style="text-decoration: underline; line-height: 4rem;" class="text-black">¿Olvidaste tu contraseña?</a></b>        
+                                            </div>
+                                          </div>
+                                    </form>
+                                    <div class="mb-5">
+                                        <p class=" text-theme">¿Necesitas una cuenta?
+                                            <a href="#signupModal!"
+                                            class="fw-bold text-black"
+                                            data-mdb-toggle="modal"
+                                            data-mdb-target="#signupModal">Regístrate aquí</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Modal -->
+    <div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Registra tu cuenta</h5>
+                    <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                <form id="signupform">
+                    <!-- EMAIL -->
+                    <div class="form-outline mb-4">
+                        <input type="email" id="signup-email" class="form-control form-control-lg" placeholder="Sign your Email" required/>
+                        <label class="form-label" for="form2Example1">Email</label>
+                    </div>
+                    <!-- PASS -->
+                    <div class="form-outline mb-4">
+                        <input type="password" id="signup-pass" class="form-control form-control-lg" placeholder="Input your password" required/>
+                        <label class="form-label" for="form2Example2">Password</label>
+                    </div>
+                    <!-- BUTTONS -->
+                    <button type="submit" class="btn-theme btn-lg px-5">Registrarse</button>
+                    <button type="button" class="btn-outline-dark btn-lg px-5" data-mdb-dismiss="modal">Cancelar</button>
+                </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Scripts-->
+      <!-- MDB -->
+      <script
+        type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/5.0.0/mdb.min.js"
+      ></script>
+      <!-- Main -->
+      <script src="./login.js" type="module"></script>
+</body>
+</html>

@@ -28,5 +28,23 @@ Aplicación básica de lista de tareas
   - [x] Collection preview (CRUD with tables)
 - [x] Also added dark mode!
 
+## [Parcial 2](/Parcial_2/)
+- [x] [Login/Signup](/Parcial_2/login.html)
+  - [x] Email and Password
+  - [x] Facebook
+  - [x] Google
+- [ ] [Main Page](/Parcial_2/mainPage.html)
+  - [x] Logout button
+  - [ ] Cities collection
+    - [x] See cities collection
+    - [x] See ordered cities collection (priority)
+    - [x] "Add city" button
+    - [ ] Edit/update cities
+    - [ ] Delete cities
+    - [ ] Add and see Santiago Subcollection (priority)
+  - [ ] Users collection
+    - [x] See Users collection
+    - [ ] Block Users collection under Google auth (rules) (priority)
+    - [ ] Upload profile images (priority)
 
 >Written by Lucas Rifo 

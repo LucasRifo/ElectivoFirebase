@@ -1,0 +1,83 @@
+body{
+    margin-top:20px;
+    background: white;
+    color: black;
+    transition: .182s;
+}
+.account-block {
+    padding: 0;
+    background-image: url(./Ely-finale1.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 35rem;
+    position: relative;
+}
+.account-block .overlay {
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+.account-block 
+.account-top {
+    text-align: left;
+    color: #fff;
+    position: absolute;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    top: 3rem;
+    left: 0;
+    right: 0;
+}
+.account-middle {
+    text-align: left;
+    color: #fff;
+    position: absolute;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    top: 35%;
+    left: 0;
+    right: 0;
+}
+.account-bot {
+    text-align: left;
+    color: #fff;
+    position: absolute;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    bottom: 1rem;
+    left: 0;
+    right: 0;
+}
+
+
+.text-theme {
+    color: black;
+}
+
+.btn-theme {
+    background-color: black;
+    color: #fff;
+}
+.btn-theme:hover{
+    color: goldenrod;
+}
+.modal-header{
+    border-color: white;
+  }
+  .modal-content{
+    background-color: white;
+    color: black;
+    border-color: black
+  }
+.container{
+    transition: 0.5s;
+}
+p{
+    margin: 1em;
+}

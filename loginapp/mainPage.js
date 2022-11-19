@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-app.js";
 import  { getAuth, signOut  } from  "https://www.gstatic.com/firebasejs/9.12.1/firebase-auth.js";
-import { getFirestore, collection, query, onSnapshot, addDoc, getDocs, deleteDoc, doc, getDoc, updateDoc} from "https://www.gstatic.com/firebasejs/9.12.1/firebase-firestore.js"//Firestore
+import { getFirestore, collection, query, onSnapshot} from "https://www.gstatic.com/firebasejs/9.12.1/firebase-firestore.js"//Firestore
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
