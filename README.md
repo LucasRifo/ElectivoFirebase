@@ -39,12 +39,12 @@ Aplicación básica de lista de tareas
     - [x] See cities collection
     - [x] See ordered cities collection (priority)
     - [x] "Add city" button
-    - [ ] Edit/update cities
-    - [ ] Delete cities
+    - [x] Edit/update cities
+    - [x] Delete cities
     - [ ] Add and see Santiago Subcollection (priority)
-  - [ ] Users collection
+  - [x] Users collection
     - [x] See Users collection
-    - [ ] Block Users collection under Google auth (rules) (priority)
-    - [ ] Upload profile images (priority)
+    - [x] Block Users collection under Google auth (rules) (priority)
+    - [x] Load profile images (priority)
 
 >Written by Lucas Rifo 

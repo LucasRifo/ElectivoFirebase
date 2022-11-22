@@ -208,6 +208,7 @@
             <th>Nombre</th>
             <th>Región</th>
             <th>Población</th>
+            <th></th>
           </tr>
         </thead>
         <tbody id="tabla1-body">
@@ -216,7 +217,7 @@
       <div class="center">
         <button class="btn btn-primary"
         data-mdb-toggle="modal"
-        data-mdb-target="#city-modal">Agregar Nueva Ciudad</button>
+        data-mdb-target="#new-city-modal">Agregar Nueva Ciudad</button>
       </div>
     </div>
 
@@ -238,7 +239,7 @@
       <div class="center">
         <button class="btn btn-primary"
         data-mdb-toggle="modal"
-        data-mdb-target="#city-modal">Agregar Nueva Ciudad</button>
+        data-mdb-target="#new-city-modal">Agregar Nueva Ciudad</button>
       </div>
     </div>
     <!--TAB 4-->
@@ -248,9 +249,11 @@
         <thead>
           <tr>
             <th>#</th>
+            <th></th>
             <th>Nombre</th>
             <th>Rol</th>
             <th>Área</th>
+            <th></th>
           </tr>
         </thead>
         <tbody id="tabla2-body">
@@ -260,8 +263,8 @@
     </div>
   </div>
 <!-- Tabs content -->
-<!-- Modal -->
-<div class="modal fade" id="city-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- Modal New City -->
+<div class="modal fade" id="new-city-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header" id="modal-h">
@@ -269,7 +272,7 @@
               <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body" id="modal-b">
-          <form id="city-form">
+          <form id="new-city-form">
               <!-- Name -->
               <div class="form-outline mb-4">
                   <input type="text" id="city-name" class="form-control form-control-lg" required/>
@@ -293,6 +296,39 @@
       </div>
   </div>
 </div>
+<!-- Modal Edit City -->
+<div class="modal fade" id="edit-city-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header" id="modal-h">
+              <h5 class="modal-title" id="exampleModalLabel">Editando datos de la ciudad</h5>
+              <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body" id="modal-b">
+          <form id="edit-city-form">
+
+              <div class="form-outline mb-4">
+                  <input type="text" id="edit-city-name" class="form-control form-control-lg" required/>
+                  <label class="form-label" id="edit-city-name-label" for="form2Example1">Nombre</label>
+              </div>
+              
+              <div class="form-outline mb-4">
+                  <input type="text" id="edit-city-region" class="form-control form-control-lg" required/>
+                  <label class="form-label" id="edit-city-region-label" for="form2Example2">Región</label>
+              </div>
+              
+              <div class="form-outline mb-4">
+                <input type="text" id="edit-city-pop" class="form-control form-control-lg" required/>
+                <label class="form-label" id="edit-city-pop-label" for="form2Example2">Población</label>
+            </div>
+              
+              <button type="submit" id="confirm-city-edit" class="btn btn-primary btn-rounded">Confirmar Cambios</button>
+              <button type="button" id="cancel" class="btn btn-dark btn-rounded" data-mdb-dismiss="modal">Cancelar</button>
+          </form>
+          </div>
+      </div>
+  </div>
+</div>
 
   <!--Scripts-->
       <!-- MDB -->
@@ -301,6 +337,6 @@
         src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/5.0.0/mdb.min.js"
       ></script>
       <!-- Main -->
-      <script src="./mainPage.js" type="module"></script>
+      <script src="./main.js" type="module"></script>
 </body>
 </html>

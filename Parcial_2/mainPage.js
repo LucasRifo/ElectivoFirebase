@@ -1,6 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-app.js";
 import  { getAuth, signOut  } from  "https://www.gstatic.com/firebasejs/9.12.1/firebase-auth.js";
-import { getFirestore, collection, query, orderBy, limit, onSnapshot, addDoc} from "https://www.gstatic.com/firebasejs/9.12.1/firebase-firestore.js"//Firestore
+import { getFirestore, collection, query, orderBy, limit, onSnapshot, addDoc, getDocs, deleteDoc, doc, getDoc, updateDoc} from "https://www.gstatic.com/firebasejs/9.12.1/firebase-firestore.js"//Firestore
+import { getStorage, ref } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-storage.js";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -16,12 +17,22 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-console.log(app)
 const db = getFirestore();
+const storage = getStorage();
 const auth = getAuth();
+const user = auth.currentUser
 const logout = document.querySelector('#logout')
-const cityform = document.querySelector('#city-form')
-const cityModal = document.getElementById('#city-modal')
+const newcityform = document.querySelector('#new-city-form')
+const editcityform = document.querySelector('#edit-city-form')
+const newcityModal = document.getElementById('#new-city-modal')
+var count = 1
+let id = '';
+
+const EliminarCiudad = (id) =>{
+  deleteDoc(doc(db,"Ciudades",id));
+  count =1
+} 
+const SearchCity = (id) => getDoc(doc(db,"Ciudades",id))
 
 logout.addEventListener('click',(e)=>{
     e.preventDefault()
@@ -44,7 +55,7 @@ window.addEventListener('DOMContentLoaded',async () =>{
     const q1 = await getTask1()
     const q2 = await getTask2()
     const q3 = await getTask3()
-    let count = 1
+    count = 1
     var unsubscribe = onSnapshot(q1,(querySnapshot)=>{
         let taskContainer = document.getElementById('tabla1-body')
         let html = ''
@@ -66,17 +77,46 @@ window.addEventListener('DOMContentLoaded',async () =>{
             </td>
             <td>
               <p class="">${ciudad.Población}</p>
-            </td>       
+            </td>
+            <td>
+              <div class="d-grid gap-2 col-1">
+                <button class="btn btn-outline-warning btn-dark btn-rounded text-warning btn-edit-city"
+                data-mdb-toggle="modal" data-mdb-target="#edit-city-modal"'
+                data-id=${ciudad.ID}>Editar</button>
+                <button class="btn btn-outline-danger btn-dark btn-rounded text-danger btn-delete-city"
+                id='btn-edit-city' data-id=${ciudad.ID}>Eliminar</button>
+              </div>
+            </td>
           </tr>`;
         });
         taskContainer.innerHTML = html
+        const CityDelBtns = document.querySelectorAll('.btn-delete-city')
+        CityDelBtns.forEach(btn => {
+            btn.addEventListener('click', async (e) => {
+                let text = 'Seguro que quieres eliminar esta tarea?'
+                if(confirm(text)==true){
+                    await EliminarCiudad(e.target.dataset.id)
+                }
+            })
+        })
+        const CityEditBtns = document.querySelectorAll('.btn-edit-city')
+        CityEditBtns.forEach(btn => {
+            btn.addEventListener('click', async (e) => {
+                const doc = await SearchCity(e.target.dataset.id)
+                id = doc.id
+                const task = doc.data()
+                editcityform['edit-city-name'].value = task.Nombre
+                editcityform['edit-city-region'].value = task.Región
+                editcityform['edit-city-pop'].value = task.Población
+            })
+        })
     })
 
     var unsubscribe = onSnapshot(q3,(querySnapshot)=>{
       let taskContainer = document.getElementById('tabla1-order-body')
       let html = ''
       const ciudades = [];
-      let count = 1
+      count = 1
       querySnapshot.forEach((doc)=>{
           let ciudad = doc.data()
           ciudad.ID = doc.id
@@ -94,7 +134,16 @@ window.addEventListener('DOMContentLoaded',async () =>{
           </td>
           <td>
             <p class="">${ciudad.Población}</p>
-          </td>       
+          </td>
+          <td>
+              <div class="d-grid gap-2 col-1">
+                <button class="btn btn-outline-warning btn-dark btn-rounded text-warning"
+                data-mdb-toggle="modal" data-mdb-target="#edit-city-modal" id='btn-edit-city'
+                data-id=${ciudad.ID}>Editar</button>
+                <button class="btn btn-outline-danger btn-dark btn-rounded text-danger btn-delete-city"
+                id='btn-edit-city' data-id=${ciudad.ID}>Eliminar</button>
+              </div>
+            </td>
         </tr>`;
       });
       taskContainer.innerHTML = html
@@ -115,6 +164,14 @@ window.addEventListener('DOMContentLoaded',async () =>{
               <p class="fw-bold">${count++}</p>
             </td>
             <td>
+              <img
+              src="${Usuario}"
+              alt=""
+              style="width: 45px; height: 45px"
+              class="rounded-circle"
+              />
+            </td>
+            <td>
               <p class="">${Usuario.Nombre}</p>
             </td>
             <td>
@@ -122,18 +179,37 @@ window.addEventListener('DOMContentLoaded',async () =>{
             </td>
             <td>
               <p>${Usuario.Área}</p>
-            </td>       
+            </td>
+            <td>
+              <div class="d-grid gap-2 col-1">
+                <button class="btn btn-outline-warning btn-dark btn-rounded text-warning"
+                data-mdb-toggle="modal" data-mdb-target="#edit-city-modal" id='btn-edit-city'
+                data-id=${Usuario.ID}>Editar</button>
+                <button class="btn btn-outline-danger btn-dark btn-rounded text-danger btn-delete-city"
+                id='btn-edit-city' data-id=${Usuario.ID}>Eliminar</button>
+              </div>
+            </td>
           </tr>`;
         });
         taskContainer.innerHTML = html
     })
 })
 
-cityform.addEventListener('submit', (e)=>{
+newcityform.addEventListener('submit', (e)=>{
   e.preventDefault();
   const Nombre = document.querySelector('#city-name').value;
   const Región = document.querySelector('#city-region').value;
   const Población = document.querySelector('#city-pop').value;
   addDoc(collection(db,'Ciudades'),{Nombre,Región,Población})
-  cityform.reset()
+  count = 1
+  newcityform.reset()
+})
+editcityform.addEventListener('submit', (e)=>{
+  e.preventDefault();
+  const newNombre = document.querySelector('#edit-city-name').value;
+  const newRegión = document.querySelector('#edit-city-region').value;
+  const newPoblación = document.querySelector('#edit-city-pop').value;
+  updateDoc(doc(db,"Ciudades",id),{Nombre: newNombre, Región: newRegión, Población: newPoblación})
+  count = 1
+  editcityform.reset()
 })
